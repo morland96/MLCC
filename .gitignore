@@ -1,0 +1,11 @@
+*.pyc
+mlcc/dist/
+mlcc-spa/build/
+.vscode
+.DS_Store
+/node_modules/
+.idea/
+*.db
+data/
+*.log
+*.db

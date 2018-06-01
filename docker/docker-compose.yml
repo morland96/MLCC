@@ -1,0 +1,13 @@
+version: '2.1'
+
+services:
+  mlcc:
+    image: mlcc
+    build: .
+    tty: true
+    ports:
+      - 27017:27017
+      - 28017:28017
+    volumes: 
+      - ../mlcc:/mlcc
+      - ../data:/data
