@@ -73,6 +73,9 @@ export default {
     finishedTime () {
       let finishedTime = new Date(this.work.finished_time).getTime()
       let createTime = new Date(this.work.create_time).getTime()
+      if (isNaN(finishedTime)) {
+        return '运行中'
+      }
       let d = finishedTime - createTime
       let min = Math.floor(d / (1000 * 60))
       let sec = Math.floor((d - min * (1000 * 60)) / 1000)
@@ -103,7 +106,14 @@ export default {
           desc: '已执行' + this.progress + '/' + this.work.data_num
         })
       } else {
-        this.$emit('showMore', this.work.uuid)
+        if (this.work.user !== this.$store.state.UserInfo.user.username) {
+          this.$Notice.warning({
+            title: '对不起您不能查看其他用户的任务结果',
+            desc: '任务属于用户： ' + this.work.user
+          })
+        } else {
+          this.$emit('showMore', this.work.uuid)
+        }
       }
     }
   }

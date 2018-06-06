@@ -8,15 +8,15 @@
       <div class="logo-con">
         <b> Multi</b>LCC
       </div>
-      <Menu ref="side_menu" theme="dark" width="auto" :active-name="$route.name" @on-select="onMenuSelect">
+      <Menu ref="side_menu" theme="dark" width="auto" :active-name="$route.path" @on-select="onMenuSelect">
         <MenuItem name="home">
-        <Icon type="document-text" /> 主页 </MenuItem>
+        <Icon type="home" /> 主页 </MenuItem>
         <MenuItem name="data-sets">
         <Icon type="document-text" /> 数据集 </MenuItem>
         <MenuItem name="scripts">
-        <Icon type="document-text" /> 代码模组 </MenuItem>
+        <Icon type="folder" /> 代码模组 </MenuItem>
         <MenuItem name="works">
-        <Icon type="document-text" /> 任务 </MenuItem>
+        <Icon type="grid" /> 任务 </MenuItem>
       </Menu>
     </div>
     <div class="main-header-con">
@@ -25,12 +25,11 @@
           <div class="main-breadcrumb">
             <Breadcrumb>
               <BreadcrumbItem to="/">主页</BreadcrumbItem>
-              <BreadcrumbItem to="/Home">Components</BreadcrumbItem>
+              <BreadcrumbItem to="/Home">{{$route.name}}</BreadcrumbItem>
             </Breadcrumb>
           </div>
         </div>
         <div class="header-avator-con">
-          <message-tip v-model="mesCount"></message-tip>
           <div class="user-dropdown-menu-con">
             <Row type="flex" justify="end" align="middle" class="user-dropdown-innercon">
               <Dropdown transfer trigger="click" @on-click="handleClickUserDropdown">
@@ -93,6 +92,8 @@ export default {
       if (name === 'logout') {
         this.$store.commit('logout')
         this.$router.go()
+      } else {
+        this.$router.push('profile')
       }
       console.log(name, ' is clicked')
     }

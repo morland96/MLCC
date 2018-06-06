@@ -14,7 +14,7 @@ logger = get_task_logger(__name__)
 
 @app.task
 def result(task_uuid):
-    """Collecte result
+    """Collect result
     Args:
         task_uuid (str): Result's parent's uuid
     """

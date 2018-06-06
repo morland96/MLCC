@@ -271,6 +271,8 @@ export default {
               console.log(response)
               this.updateTable()
               this.uploadForm.uuid = ''
+              this.uploadForm.filename = ''
+              this.uploadForm.details = ''
             })
             .catch(error => {
               console.log('get error')

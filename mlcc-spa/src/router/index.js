@@ -13,27 +13,34 @@ const routes = [
     children: [
       {
         path: 'home',
-        name: 'home',
+        name: '主页',
         meta: { requireAuth: true },
         component: () => import('@/components/pages/home.vue')
       },
       {
         path: 'data-sets',
-        name: 'data-sets',
+        name: '数据集',
         meta: { requireAuth: true },
         component: () => import('@/components/pages/data-sets.vue')
       },
       {
         path: 'scripts',
-        name: 'scripts',
+        name: '代码模组',
         meta: { requireAuth: true },
         component: () => import('@/components/pages/scripts.vue')
       },
       {
         path: 'works',
-        name: 'works',
+        name: '任务',
         meta: { requireAuth: true },
         component: () => import('@/components/pages/works.vue')
+      },
+      {
+        path: 'profile',
+        name: '个人中心',
+        meta: { requireAuth: true
+        },
+        component: () => import('@/components/pages/profile.vue')
       }
     ]
   },

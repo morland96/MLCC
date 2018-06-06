@@ -121,7 +121,8 @@
             </iframe>
             <div slot="footer">
                 <Button @click="download" type="info">下载</Button>
-                <Button @click="showMoreModal = false" type="error">关闭</Button>
+                <Button @click="del" type="error">删除</Button>
+                <Button @click="showMoreModal = false" >关闭</Button>
             </div>
         </Modal>
     </div>
@@ -246,7 +247,7 @@ export default {
       this.old_unfinished = this.unfinished
       this.axios.get('/api/works').then(response => {
         let data = response.data
-        this.works = data
+        this.works = data.reverse()
         let runningWorks = 0
         let unfinished = []
         for (let i in this.works) {

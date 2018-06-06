@@ -46,7 +46,7 @@ def auth(func):
         user = User.verify_auth_token(
             request.headers.get('Authentication-Token'))
         if user == -1:
-            return jsonify({}), 401
+            return jsonify({"error": "Not allowed"}), 401
         if user is None:
             return jsonify({}), 403
         print(user.username)
@@ -137,6 +137,7 @@ def register_user():
     data = json.loads(data)
     username = data['username']
     password = data['password']
+    privilege = data['privilege'] or 1
     users = User.objects(username=username, password=password)
     if len(users) > 0:
         return jsonify({'id': -1}), 409
@@ -144,7 +145,7 @@ def register_user():
         user = User()
         user.username = username
         user.password = password
-        user.privilege = 0
+        user.privilege = privilege
         user.save()
         return jsonify(user.get_dict()), 201
 
@@ -329,7 +330,8 @@ def create_work(user):
 
 
 @app.route('/api/nodes/status', methods=['GET'])
-def get_nodes_status():
+@auth
+def get_nodes_status(user):
     nodes = Node.objects()
     status = []
     for node in nodes:
