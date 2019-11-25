@@ -46,7 +46,7 @@ def auth(func):
         user = User.verify_auth_token(
             request.headers.get('Authentication-Token'))
         if user == -1:
-            return jsonify({"error": "Not allowed"}), 401
+            return jsonify({"error": Not allowed"}), 401
         if user is None:
             return jsonify({}), 403
         print(user.username)

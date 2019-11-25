@@ -87,11 +87,16 @@ class UserError(Exception):
 class Auth():
     @staticmethod
     def encode_auth_token(username, login_time) -> str:
-        """ Get Token
-        :param username: int
-        :param login_time: int(timestamp)
-        :return: string
-        :rtype: string
+        """ Get token from username and login time
+
+        Args:
+            login_time (int): timestamp 
+
+        Raises:
+            e: Exception
+
+        Returns:
+            str: token
         """
         try:
             payload = {
